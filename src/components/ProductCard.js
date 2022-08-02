@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardMedia } from "@mui/material";
 import React from "react";
 
 function ProductCard(props) {
