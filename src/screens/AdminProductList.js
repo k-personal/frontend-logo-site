@@ -127,7 +127,7 @@ function AdminProductList(props) {
                             primary={product.name}
                             secondary={product.price}
                           />
-                          <ListItemText primary={product._id} />
+//                           <ListItemText primary={product._id} />
                         </ListItem>
                       </div>
                     );
