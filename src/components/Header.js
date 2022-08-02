@@ -111,7 +111,7 @@ function Header(props) {
                   textDecoration: "none",
                 }}
               >
-                grphic.co
+                logo.co
               </Typography>
             </Link>
 
@@ -170,7 +170,7 @@ function Header(props) {
                 textDecoration: "none",
               }}
             >
-              <Link to="/">grphic.co</Link>
+              <Link to="/">logo.co</Link>
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
