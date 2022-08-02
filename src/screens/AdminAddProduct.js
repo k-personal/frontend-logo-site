@@ -20,6 +20,7 @@ function AdminAddProduct(props) {
   // const [file, setFile] = useState(null);
   const [category, setCatgory] = useState("");
   const [description, setDescription] = useState("");
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   let userId = "";
   let adminCheck = false;
@@ -37,6 +38,8 @@ function AdminAddProduct(props) {
   };
 
   const postForm = async (e) => {
+    setButtonClicked(true);
+
     const imageFile = document.querySelector("#imageInput").files[0];
     const data = new FormData();
     data.append("image", imageFile);
@@ -48,7 +51,7 @@ function AdminAddProduct(props) {
 
     try {
       let res = await fetch(
-        "https://logo-app-back.herokuapp.com/api/product/upload ",
+        "https://logo-app-back.herokuapp.com/api/product/upload",
         {
           method: "POST",
           headers: {
@@ -63,11 +66,15 @@ function AdminAddProduct(props) {
         console.log(resUpoad);
         showSuccess();
         props.getProducts();
+        setButtonClicked(false);
       } else {
         console.log("Some error occured");
+        console.log(resUpoad);
+        setButtonClicked(false);
       }
     } catch (err) {
       console.log(err);
+      setButtonClicked(false);
     }
   };
 
@@ -155,15 +162,29 @@ function AdminAddProduct(props) {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            onClick={formSubmit}
-            size="large"
-          >
-            ADD
-          </Button>
+          {!buttonClicked ? (
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={formSubmit}
+              size="large"
+            >
+              ADD
+            </Button>
+          ) : (
+            <Button
+              fullWidth
+              disabled
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={formSubmit}
+              size="large"
+            >
+              ADD
+            </Button>
+          )}
+
           {success ? (
             <Alert variant="filled" severity="success">
               Successfully Added Product!
